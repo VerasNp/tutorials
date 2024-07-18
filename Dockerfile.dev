@@ -1,0 +1,5 @@
+FROM odoo:17.0
+
+WORKDIR /home/odoo
+
+ENTRYPOINT [ "tail", "-f", "/dev/null" ]

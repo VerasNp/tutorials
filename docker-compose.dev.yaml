@@ -1,0 +1,24 @@
+services:
+  odoo:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ".:/home/odoo"
+      - ./config:/etc/odoo
+
+    ports:
+      - "8069:8069"
+    depends_on:
+      - db
+    environment:
+      - HOST=mydb
+      - USER=odoo
+      - PASSWORD=myodoo
+
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=myodoo
+      - POSTGRES_USER=odoo
